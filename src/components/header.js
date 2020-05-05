@@ -5,7 +5,7 @@ import { Container, Flex } from "../styles/globalStyles"
 
 import { useGlobalStateContext, useGlobalDispatchContext } from "../context/globalContext"
 
-const Header = () => {
+const Header = ({onCursor}) => {
   
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
@@ -30,9 +30,16 @@ const Header = () => {
     >
       <Container fluid>
         <Flex spaceBetween noHeight>
-          <Logo>
+          <Logo
+          onMouseEnter={()=> onCursor('hovered')}
+          onMouseLeave={onCursor}
+          >
             <Link to="/">BRETT</Link>
-            <span onClick={toggleTheme}></span>
+            <span 
+            onClick={toggleTheme}
+            onMouseEnter={()=> onCursor('pointer')}
+          onMouseLeave={onCursor}
+            ></span>
             <Link to="/">CODES</Link>
           </Logo>
           <Menu>
