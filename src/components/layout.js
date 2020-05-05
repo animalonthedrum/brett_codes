@@ -8,9 +8,29 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import {createGlobalStyle, ThemeProvider} from "styled-components"
+import {normalize} from "styled-normalize"
 
 import Header from "./header"
-import "./layout.css"
+import { useGlobalStateContext } from "../context/globalContext"
+
+const GlobalStyle = createGlobalStyle `
+${normalize}
+* {
+  text-decoration:none;
+}
+
+html {
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+  font-size:16px;
+}
+body {
+  background:${props=>props.theme.background};
+  overscroll-behavior:none;
+  overflow-x:hidden;
+}
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,29 +43,38 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const darkTheme = {
+    background:"#000",
+    text:"#fff",
+    red:"#ea291e"
+  }
+  const lightTheme = {
+    background:"#fff",
+    text:"#000",
+    red:"#ea291e"
+  }
+
+  const { currentTheme } = useGlobalStateContext()
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <ThemeProvider theme={currentTheme === 'dark' ? darkTheme : lightTheme }>
+      <GlobalStyle/>
+      <Header/>
         <main>{children}</main>
-        <footer>
+        </ThemeProvider>
+        {/* <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        </footer> */}
+
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// Layout.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
 
 export default Layout
