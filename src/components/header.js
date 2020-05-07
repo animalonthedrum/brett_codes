@@ -38,7 +38,7 @@ const Header = ({onCursor}) => {
             <span 
             onClick={toggleTheme}
             onMouseEnter={()=> onCursor('pointer')}
-          onMouseLeave={onCursor}
+            onMouseLeave={onCursor}
             ></span>
             <Link to="/">CODES</Link>
           </Logo>
