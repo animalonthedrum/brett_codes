@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react"
 
+//Define Conext
 const GlobalStateContext = createContext()
 const GlobalDispatchContext = createContext()
 
@@ -13,11 +14,11 @@ const globalReducer = (state, action) => {
       }
     }
     case "CURSOR_TYPE": {
-        return {
-          ...state,
-          cursorType: action.cursorType,
-        }
+      return {
+        ...state,
+        cursorType: action.cursorType,
       }
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -29,11 +30,11 @@ const globalReducer = (state, action) => {
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme:
-      window.localStorage.getItem("theme") === null
+      window.localStorage.getItem("theme") == null
         ? "dark"
         : window.localStorage.getItem("theme"),
-        cursorType:false,
-        cursorStyles:["pointer", "hovered"],
+    cursorType: false,
+    cursorStyles: ["pointer", "hovered", "locked", "white"],
   })
 
   return (
@@ -45,6 +46,7 @@ export const GlobalProvider = ({ children }) => {
   )
 }
 
-//Cutsom hooks to use dispatch and state
+//custom hooks for when we want to use our global state
 export const useGlobalStateContext = () => useContext(GlobalStateContext)
+
 export const useGlobalDispatchContext = () => useContext(GlobalDispatchContext)

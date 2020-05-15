@@ -1,4 +1,5 @@
-import styled, { css} from "styled-components"
+import styled, { css } from "styled-components"
+
 
 export const Container = styled.div `
 flex-grow:1;
@@ -45,27 +46,43 @@ export const Flex = styled.div`
     `}
 `
 
-export const Cursor = styled.div `
-    position:absolute;
-    top:0;
-    left:0;
-    width:32px;
-    height:32px;
-    background-color:${props => props.theme.red};
-    border-radius:100%;
-    transform:translate(-50%, -50%);
-    transition:all .1s ease-in-out;
-    transition-property:width, height, border;
-    will-change:width,height,transform, border;
-    pointer-events:none;
-    z-index:99;
-    &.hovered {
-        background-color:transparent !important;
-        width:56px;
-        height:56px;
-        border:4px solid ${props => props.theme.red}
-    }
-    &.pointer {
-        border:4px solid ${props => props.theme.text}
-    }
+export const Cursor = styled.div`
+  position: fixed;
+  top: 400px;
+  left: 400px;
+  width: 32px;
+  height: 32px;
+  background:${props => props.theme.cursor} !important;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease-out;
+  transition-property: width, height, border;
+  will-change: width, height, transform, border;
+  pointer-events: none;
+  z-index: 999;
+  &.pointer {
+    border: 4px solid ${props => props.theme.text} !important;
+  }
+  &.hovered {
+    background: transparent !important;
+    width: 56px;
+    height: 56px;
+    border: 4px solid #ea281e;
+    border: 4px solid #ea281e;
+  }
+  &.locked {
+    background: transparent !important;
+    width: 56px;
+    height: 56px;
+    border: 4px solid ${props => props.theme.text} !important;
+    top: ${props => props.theme.top} !important;
+    left: ${props => props.theme.left} !important;
+  }
+  &.nav-open {
+    background: ${props => props.theme.cursor}!important;
+  }
+  &.nav-open,
+  &.locked {
+    border: 4px solid ${props => props.theme.text} !important;
+  }
 `

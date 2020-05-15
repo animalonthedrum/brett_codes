@@ -13,7 +13,7 @@ export const HeaderNav = styled(motion.div)`
 export const Logo = styled.div`
     a {
         font-size:1.8rem;
-        font-weight:800;
+        font-weight:400;
         color:${props => props.theme.text};
     }
     span {
@@ -34,6 +34,25 @@ export const Menu = styled.div`
         outline:none;
         padding:20px;
         background:none;
+        position:relative;
+        &:hover {
+            &:before {
+                opacity:1;
+            }
+        }
+        &:before {
+            content:'WORK';
+            display:block;
+            opacity:0;
+            color:${props => props.theme.text};
+            font-family:inherit;
+            font-size: inherit;
+            font-weight:500;
+            position:absolute;
+            left:-40px;
+            top:50%;
+            transform:translateY(-50%);
+        }
         span {
             width:36px;
             height:8px;
