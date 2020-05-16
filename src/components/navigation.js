@@ -43,7 +43,7 @@ const navRoutes = [
   {
     id: 4,
     title: "Hitch Adventures",
-    path: "/hitch-adventure",
+    path: "/hitch-adventures",
     image: "Hitch/Hitch_home.jpg",
   },
   {

@@ -4,7 +4,7 @@ import {motion} from "framer-motion"
 export const HeaderNav = styled(motion.div)`
     height:0px;
     width:100%;
-    position:absolute;
+    position:fixed;
     top:72px;
     right:0;
     left:0;
